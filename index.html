@@ -3,78 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golf Trip Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #4CAF50;
-        }
-        .timer {
-            font-size: 2em;
-            text-align: center;
-            margin: 20px 0;
-            animation: glow 1s infinite alternate;
-        }
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px #4CAF50; }
-            100% { text-shadow: 0 0 20px #4CAF50, 0 0 30px #4CAF50; }
-        }
-        .roster, .schedule {
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-    </style>
+    <title>Sand Valley Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Welcome to the Golf Trip!</h1>
-    <div class="timer" id="timer"></div>
-    <div class="roster">
-        <h2>Team Rosters</h2>
+    <header>
+        <h1>Welcome to Sand Valley</h1>
+        <div id="countdown-timer"></div>
+    </header>
+    <nav>
         <ul>
-            <li>Player 1</li>
-            <li>Player 2</li>
-            <li>Player 3</li>
+            <li><a href="#teams">Teams</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#accommodations">Accommodations</a></li>
+            <li><a href="#dining">Dining</a></li>
         </ul>
-    </div>
-    <div class="schedule">
-        <h2>Tournament Schedule</h2>
-        <ul>
-            <li>2026-03-01: Tournament 1</li>
-            <li>2026-03-02: Tournament 2</li>
-            <li>2026-03-03: Tournament 3</li>
-        </ul>
-    </div>
+    </nav>
+    <main>
+        <section id="teams">
+            <h2>Teams</h2>
+            <p>Details about the teams participating in the event.</p>
+        </section>
+        <section id="schedule">
+            <h2>Schedule</h2>
+            <p>Event schedule goes here.</p>
+        </section>
+        <section id="accommodations">
+            <h2>Accommodations</h2>
+            <h3>Cottages</h3>
+            <p>Our cozy cottages provide the perfect retreat. Each cottage features modern amenities and stunning views of the landscape. To book your stay, please provide:
+            </p>
+            <ul>
+                <li>Check-in and check-out dates</li>
+                <li>Number of guests</li>
+                <li>Any special requests</li>
+            </ul>
+            <h3>Booking Information</h3>
+            <p>To make your reservation, please call our booking office or visit our website.</p>
+        </section>
+        <section id="dining">
+            <h2>Dining Options</h2>
+            <p>We offer dinner reservations for all four nights of your stay. Menu options include:</p>
+            <ul>
+                <li>Local delicacies</li>
+                <li>Vegetarian options</li>
+                <li>Child-friendly meals</li>
+            </ul>
+            <p>To reserve your dining experience, please:
+            <ul>
+                <li>Indicate your preferred time</li>
+                <li>Let us know about any dietary restrictions</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Sand Valley. All rights reserved.</p>
+    </footer>
     <script>
-        // Countdown timer to Tournament Start Date
-        const countDownDate = new Date("2026-03-01T00:00:00").getTime();
-        const timerElement = document.getElementById('timer');
-
-        const x = setInterval(function() {
+        // Countdown timer script
+        const countdownDate = new Date('2026-03-01T00:00:00Z').getTime();
+        const countdownTimer = setInterval(() => {
             const now = new Date().getTime();
-            const distance = countDownDate - now;
+            const distance = countdownDate - now;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
+            document.getElementById('countdown-timer').innerHTML = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
             if (distance < 0) {
-                clearInterval(x);
-                timerElement.innerHTML = "Tournament Started!";
+                clearInterval(countdownTimer);
+                document.getElementById('countdown-timer').innerHTML = 'EXPIRED';
             }
         }, 1000);
     </script>
