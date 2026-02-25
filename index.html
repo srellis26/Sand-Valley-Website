@@ -1,1 +1,60 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Golf Trip Website</title>\n    <style>\n        body {\n            margin: 0;\n            font-family: Arial, sans-serif;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            justify-content: center;\n            height: 100vh;\n            background: linear-gradient(to right, #1e3c72, #2a5298);\n            color: white;\n        }\n        h1 {\n            margin: 20px;\n        }\n        .countdown {\n            font-size: 2em;\n            margin: 20px;\n        }\n        .team {\n            margin: 20px;\n            width: 90%;\n            max-width: 600px;\n        }\n        .schedule {\n            margin: 20px;\n            width: 90%;\n            max-width: 600px;\n        }\n        .accommodations, .reservations {\n            margin: 20px;\n            width: 90%;\n            max-width: 600px;\n        }\n        .hover-effect:hover {\n            transform: scale(1.05);\n            transition: transform 0.3s;\n        }\n    </style>\n</head>\n<body>\n    <h1>Golf Trip to Sand Valley</h1>\n    <div class="countdown" id="countdown"></div>\n    <div class="team">\n        <h2>Connecticut Team</h2>\n        <ul>\n            <li>John Doe - 5.0</li>\n            <li>Jane Smith - 12.0</li>\n        </ul>\n        <h2>Massachusetts Team</h2>\n        <ul>\n            <li>Tom Brown - 8.0</li>\n            <li>Mary Lee - 10.0</li>\n        </ul>\n    </div>\n    <div class="schedule">\n        <h2>Tournament Schedule</h2>\n        <p>Wednesday: Course A - 8:00 AM</p>\n        <p>Thursday: Course B - 9:00 AM</p>\n        <p>Friday: Course C - 10:00 AM</p>\n    </div>\n    <div class="accommodations">\n        <h2>Lake Leopold Cottage Accommodations</h2>\n        <p>Beautiful lakeside cottages available for all guests.</p>\n    </div>\n    <div class="reservations">\n        <h2>Dinner Reservations</h2>\n        <p>Reservations for all 4 nights at local restaurants.</p>\n    </div>\n    <script>\n        const countdownDate = new Date('May 20, 2026 09:18:00').getTime();\n        const countdownFunction = setInterval(() => {\n            const now = new Date().getTime();\n            const distance = countdownDate - now;\n            const days = Math.floor(distance / (1000 * 60 * 60 * 24));\n            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));\n            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));\n            const seconds = Math.floor((distance % (1000 * 60)) / 1000);\n            document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';\n            if (distance < 0) {\n                clearInterval(countdownFunction);\n                document.getElementById('countdown').innerHTML = 'EXPIRED';\n            }\n        }, 1000);\n    </script>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sand Valley Website</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #c7e9b0, #f0f0f0);
+            font-family: Arial, sans-serif;
+        }
+        .team-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        .team-card:hover {
+            transform: scale(1.05);
+        }
+        /* Additional CSS for animations, layout, etc. */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sand Valley Tournament 2026</h1>
+        <!-- Navigation Menu -->
+    </header>
+    <section>
+        <h2>Team Details</h2>
+        <div class="team-card">Steve Ellis: 12.1</div>
+        <div class="team-card">Mike Gallic: 1.6</div>
+        <div class="team-card">Colin Kupfer: 2.4</div>
+        <div class="team-card">Tom McCarthy: +3.6</div>
+        <div class="team-card">Keith DeSchamp: 3.7</div>
+        <div class="team-card">Tim Labre: 4.6</div>
+        <div class="team-card">Garret Smith: 8.1</div>
+        <div class="team-card">Chad Gallagher: 4.1</div>
+    </section>
+    <section>
+        <h2>Tournament Schedule</h2>
+        <p>Day 1: Course A - 09:00 AM</p>
+        <p>Day 2: Course B - 10:00 AM</p>
+        <p>Day 3: Course C - 11:00 AM</p>
+    </section>
+    <section>
+        <h2>Accommodations</h2>
+        <p>Details for Lake Leopold Cottage.</p>
+    </section>
+    <section>
+        <h2>Dinner Reservations</h2>
+        <p>Reservations for four nights.</p>
+    </section>
+    <section>
+        <h2>Booking Information</h2>
+        <p>General booking details.</p>
+    </section>
+</body>
+</html>
