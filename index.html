@@ -5,84 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golf Trip Website</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .countdown { font-size: 2em; }
-        .team { border: 1px solid #ccc; padding: 10px; margin: 10px; }
-        .schedule { margin: 10px; }
-        .accommodations, .dining { margin: 10px; }
-        .status { display: inline-block; width: 100px; text-align: center; }
-        .confirmed { background-color: green; color: white; }
-        .pending { background-color: orange; color: white; }
-        .cancelled { background-color: red; color: white; }
-        @media (max-width: 600px) {
-            body { font-size: 0.8em; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1a472a, #2d5a3d);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .timer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 0 10px;
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .roster, .schedule, .accommodations, .dining , .booking {
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            animation: slideUp 0.5s;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .badge {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        .hover-effect:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
         }
     </style>
+    <script>
+        function startCountdown() {
+            const countdownDate = new Date("May 20, 2026 09:18:00").getTime();
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        }
+        window.onload = startCountdown;
+    </script>
 </head>
 <body>
-    <h1>Golf Trip 2026</h1>
-    <div class="countdown" id="countdown"></div>
-    <script>
-        const countDownDate = new Date("2026-05-20T09:18:00Z").getTime();
-        const countdownFunction = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
-    <h2>Teams</h2>
-    <div class="team">
-        <h3>Team Connecticut</h3>
-        <ul>
-            <li>Player 1 (Handicap: 10)</li>
-            <li>Player 2 (Handicap: 12)</li>
-            <li>Player 3 (Handicap: 14)</li>
-        </ul>
+    <h1>Welcome to the Golf Trip!</h1>
+
+    <div class="countdown">
+        <div class="timer hover-effect">
+            <span id="days"></span>
+            <div>Days</div>
+        </div>
+        <div class="timer hover-effect">
+            <span id="hours"></span>
+            <div>Hours</div>
+        </div>
+        <div class="timer hover-effect">
+            <span id="minutes"></span>
+            <div>Minutes</div>
+        </div>
+        <div class="timer hover-effect">
+            <span id="seconds"></span>
+            <div>Seconds</div>
+        </div>
     </div>
-    <div class="team">
-        <h3>Team Massachusetts</h3>
-        <ul>
-            <li>Player A (Handicap: 9)</li>
-            <li>Player B (Handicap: 11)</li>
-            <li>Player C (Handicap: 13)</li>
-        </ul>
+
+    <div class="roster">
+        <h2>Team Rosters</h2>
+        <h3>Connecticut</h3>
+        <div class="badge">Player 1 - 10</div>
+        <div class="badge">Player 2 - 12</div>
+        <h3>Massachusetts</h3>
+        <div class="badge">Player 3 - 8</div>
+        <div class="badge">Player 4 - 14</div>
     </div>
-    <h2>Schedule</h2>
+
     <div class="schedule">
-        <h3>Wednesday - Course A - Tee Time: 8:00 AM</h3>
-        <h3>Thursday - Course B - Tee Time: 9:00 AM</h3>
-        <h3>Friday - Course C - Tee Time: 10:00 AM</h3>
+        <h2>Tournament Schedule</h2>
+        <p>Wed: Course A - 10:00 AM</p>
+        <p>Thu: Course B - 11:00 AM</p>
+        <p>Fri: Course C - 12:00 PM</p>
     </div>
-    <h2>Accommodations</h2>
+
     <div class="accommodations">
-        <h3>Lake LeoPold Cottage</h3>
-        <p>Details about the accommodations...</p>
+        <h2>Accommodations</h2>
+        <p>Lake LeoPold Cottage - Confirmation #: 123456</p>
     </div>
-    <h2>Dinner Reservations</h2>
+
     <div class="dining">
-        <h3>Reservation for Night 1</h3>
-        <span class="status confirmed">Confirmed</span>
-        <p>Details...</p>
-        <h3>Reservation for Night 2</h3>
-        <span class="status pending">Pending</span>
-        <p>Details...</p>
-        <h3>Reservation for Night 3</h3>
-        <span class="status cancelled">Cancelled</span>
-        <p>Details...</p>
-        <h3>Reservation for Night 4</h3>
-        <span class="status confirmed">Confirmed</span>
-        <p>Details...</p>
+        <h2>Dining Reservations</h2>
+        <p>Night 1: Restaurant A - Confirmed</p>
+        <p>Night 2: Restaurant B - TBD</p>
+        <p>Night 3: Restaurant C - Pending</p>
+        <p>Night 4: Restaurant D - Confirmed</p>
     </div>
-    <footer>
-        <p>Booking information and other details...</p>
-    </footer>
+
+    <div class="booking">
+        <h2>Booking Information</h2>
+        <p>Please contact our booking team for more details.</p>
+    </div>
 </body>
 </html>
