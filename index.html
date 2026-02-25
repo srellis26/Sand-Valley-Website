@@ -3,79 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sand Valley Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Golf Trip Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .countdown { font-size: 2em; }
+        .team { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+        .schedule { margin: 10px; }
+        .accommodations, .dining { margin: 10px; }
+        .status { display: inline-block; width: 100px; text-align: center; }
+        .confirmed { background-color: green; color: white; }
+        .pending { background-color: orange; color: white; }
+        .cancelled { background-color: red; color: white; }
+        @media (max-width: 600px) {
+            body { font-size: 0.8em; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Sand Valley</h1>
-        <div id="countdown-timer"></div>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#teams">Teams</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#accommodations">Accommodations</a></li>
-            <li><a href="#dining">Dining</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="teams">
-            <h2>Teams</h2>
-            <p>Details about the teams participating in the event.</p>
-        </section>
-        <section id="schedule">
-            <h2>Schedule</h2>
-            <p>Event schedule goes here.</p>
-        </section>
-        <section id="accommodations">
-            <h2>Accommodations</h2>
-            <h3>Cottages</h3>
-            <p>Our cozy cottages provide the perfect retreat. Each cottage features modern amenities and stunning views of the landscape. To book your stay, please provide:
-            </p>
-            <ul>
-                <li>Check-in and check-out dates</li>
-                <li>Number of guests</li>
-                <li>Any special requests</li>
-            </ul>
-            <h3>Booking Information</h3>
-            <p>To make your reservation, please call our booking office or visit our website.</p>
-        </section>
-        <section id="dining">
-            <h2>Dining Options</h2>
-            <p>We offer dinner reservations for all four nights of your stay. Menu options include:</p>
-            <ul>
-                <li>Local delicacies</li>
-                <li>Vegetarian options</li>
-                <li>Child-friendly meals</li>
-            </ul>
-            <p>To reserve your dining experience, please:
-            <ul>
-                <li>Indicate your preferred time</li>
-                <li>Let us know about any dietary restrictions</li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Sand Valley. All rights reserved.</p>
-    </footer>
+    <h1>Golf Trip 2026</h1>
+    <div class="countdown" id="countdown"></div>
     <script>
-        // Countdown timer script
-        const countdownDate = new Date('2026-03-01T00:00:00Z').getTime();
-        const countdownTimer = setInterval(() => {
+        const countDownDate = new Date("2026-05-20T09:18:00Z").getTime();
+        const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
-            const distance = countdownDate - now;
+            const distance = countDownDate - now;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById('countdown-timer').innerHTML = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
             if (distance < 0) {
-                clearInterval(countdownTimer);
-                document.getElementById('countdown-timer').innerHTML = 'EXPIRED';
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
             }
         }, 1000);
     </script>
+    <h2>Teams</h2>
+    <div class="team">
+        <h3>Team Connecticut</h3>
+        <ul>
+            <li>Player 1 (Handicap: 10)</li>
+            <li>Player 2 (Handicap: 12)</li>
+            <li>Player 3 (Handicap: 14)</li>
+        </ul>
+    </div>
+    <div class="team">
+        <h3>Team Massachusetts</h3>
+        <ul>
+            <li>Player A (Handicap: 9)</li>
+            <li>Player B (Handicap: 11)</li>
+            <li>Player C (Handicap: 13)</li>
+        </ul>
+    </div>
+    <h2>Schedule</h2>
+    <div class="schedule">
+        <h3>Wednesday - Course A - Tee Time: 8:00 AM</h3>
+        <h3>Thursday - Course B - Tee Time: 9:00 AM</h3>
+        <h3>Friday - Course C - Tee Time: 10:00 AM</h3>
+    </div>
+    <h2>Accommodations</h2>
+    <div class="accommodations">
+        <h3>Lake LeoPold Cottage</h3>
+        <p>Details about the accommodations...</p>
+    </div>
+    <h2>Dinner Reservations</h2>
+    <div class="dining">
+        <h3>Reservation for Night 1</h3>
+        <span class="status confirmed">Confirmed</span>
+        <p>Details...</p>
+        <h3>Reservation for Night 2</h3>
+        <span class="status pending">Pending</span>
+        <p>Details...</p>
+        <h3>Reservation for Night 3</h3>
+        <span class="status cancelled">Cancelled</span>
+        <p>Details...</p>
+        <h3>Reservation for Night 4</h3>
+        <span class="status confirmed">Confirmed</span>
+        <p>Details...</p>
+    </div>
+    <footer>
+        <p>Booking information and other details...</p>
+    </footer>
 </body>
 </html>
