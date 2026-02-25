@@ -3,58 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sand Valley Website</title>
+    <title>Golf Trip Countdown</title>
     <style>
         body {
-            background: linear-gradient(to bottom, #c7e9b0, #f0f0f0);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #004d00, #1a8a1a);
+            color: white;
             font-family: Arial, sans-serif;
         }
-        .team-card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px;
-            transition: transform 0.2s;
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
         }
-        .team-card:hover {
+        h1 {
+            font-size: 3em;
+            margin-top: 20px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .countdown div {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 10px;
+            font-size: 2em;
+            animation: smoothGrow 0.5s ease;
+        }
+        @keyframes smoothGrow {
+            0% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .team-info, .schedule, .accommodation, .dinner {
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .booking-info {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+        .card:hover {
             transform: scale(1.05);
+            transition: transform 0.3s;
         }
-        /* Additional CSS for animations, layout, etc. */
     </style>
 </head>
 <body>
-    <header>
-        <h1>Sand Valley Tournament 2026</h1>
-        <!-- Navigation Menu -->
-    </header>
-    <section>
-        <h2>Team Details</h2>
-        <div class="team-card">Steve Ellis: 12.1</div>
-        <div class="team-card">Mike Gallic: 1.6</div>
-        <div class="team-card">Colin Kupfer: 2.4</div>
-        <div class="team-card">Tom McCarthy: +3.6</div>
-        <div class="team-card">Keith DeSchamp: 3.7</div>
-        <div class="team-card">Tim Labre: 4.6</div>
-        <div class="team-card">Garret Smith: 8.1</div>
-        <div class="team-card">Chad Gallagher: 4.1</div>
-    </section>
-    <section>
-        <h2>Tournament Schedule</h2>
-        <p>Day 1: Course A - 09:00 AM</p>
-        <p>Day 2: Course B - 10:00 AM</p>
-        <p>Day 3: Course C - 11:00 AM</p>
-    </section>
-    <section>
-        <h2>Accommodations</h2>
-        <p>Details for Lake Leopold Cottage.</p>
-    </section>
-    <section>
-        <h2>Dinner Reservations</h2>
-        <p>Reservations for four nights.</p>
-    </section>
-    <section>
-        <h2>Booking Information</h2>
-        <p>General booking details.</p>
-    </section>
+    <div class="container">
+        <h1>Golf Trip Countdown</h1>
+        <div id="countdown" class="countdown">
+            <div id="days">0 days</div>
+            <div id="hours">0 hours</div>
+            <div id="minutes">0 minutes</div>
+            <div id="seconds">0 seconds</div>
+        </div>
+        <div class="team-info">
+            <h2>Team Connecticut</h2>
+            <p>Steve Ellis: 12.1</p>
+            <p>Mike Gallic: 1.6</p>
+            <p>Colin Kupfer: 2.4</p>
+            <p>Tom McCarthy: +3.6</p>
+
+            <h2>Team Massachusetts</h2>
+            <p>Keith DeSchamp: 3.7</p>
+            <p>Tim Labre: 4.6</p>
+            <p>Garret Smith: 8.1</p>
+            <p>Chad Gallagher: 4.1</p>
+        </div>
+        <div class="schedule">
+            <h2>Tournament Schedule</h2>
+            <p>Wednesday May 20 - Sandbox 17-hole Funzie at 9:18/9:30 AM, The Lido Four-Ball at 1:00/1:10 PM;</p>
+            <p>Thursday May 21 - Sedge Valley Four-Ball at 7:30/7:40 AM, Mammoth Dunes Four-Ball at 1:30/1:40 PM;</p>
+            <p>Friday May 22 - Sand Valley Singles at 9:00/9:10 AM, Sandbox 17-hole Funzie at 2:42/2:54 PM;</p>
+        </div>
+        <div class="accommodation">
+            <h2>Accommodation Details</h2>
+            <p>Lake Leopold Cottage - Confirmation R041B3</p>
+            <p>4 Bedrooms with 2 Queens each</p>
+            <p>Outdoor deck, fire-pit</p>
+            <p>Total Cost: $3,584.40</p>
+        </div>
+        <div class="dinner">
+            <h2>Dinner Reservations</h2>
+            <p>Tuesday: TBD (Mammoth Bar candidate)</p>
+            <p>Wednesday: The Gallery 7:00 PM</p>
+            <p>Thursday: TBD (Bill's BBQ candidate)</p>
+            <p>Friday: Aldo's Farm & Table 6:30 PM</p>
+        </div>
+        <div class="booking-info">
+            <h2>Booking Information</h2>
+            <p>Status: Deposits Made</p>
+            <p>Caddie Details: To be arranged</p>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const countDownDate = new Date("2026-05-20T09:18:00").getTime();
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days + " days";
+            document.getElementById("hours").innerHTML = hours + " hours";
+            document.getElementById("minutes").innerHTML = minutes + " minutes";
+            document.getElementById("seconds").innerHTML = seconds + " seconds";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Countdown ended";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
